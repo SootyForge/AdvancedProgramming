@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minesweeper
+namespace Minesweeper2D
 {
     public class Grid : MonoBehaviour
     {
