@@ -244,7 +244,7 @@ namespace Minesweeper3DMk2
             if (Input.GetMouseButtonDown(0))
             {
                 Tile hitTile = GetHitTile(Input.mousePosition);
-                if (hitTile)
+                if (hitTile && !hitTile.isFlagged)
                 {
                     SelectTile(hitTile);
                 }
@@ -263,39 +263,6 @@ namespace Minesweeper3DMk2
         void Update()
         {
             MouseOver();
-            UpdateGrid();
-        }
-
-        void UpdateGrid()
-        {
-            // Store half the size of the grid
-            Vector3 halfSize = new Vector3(width * .5f, height * .5f, depth * .5f);
-
-            // Offset
-            Vector3 offset = new Vector3(.5f, .5f, .5f);
-
-            // Loop through the entire list of tiles
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    for (int z = 0; z < depth; z++)
-                    {
-                        // Generate position for current tile
-                        Vector3 position = new Vector3(x - halfSize.x,
-                                                       y - halfSize.y,
-                                                       z - halfSize.z);
-                        // Offset position to center
-                        position += offset;
-                        // Apply spacing
-                        position *= spacing;
-                        // Spawn a new tile
-                        Tile tile = tiles[x, y, z];
-
-                        tile.transform.position = position;
-                    }
-                }
-            }
         }
     }
 }
